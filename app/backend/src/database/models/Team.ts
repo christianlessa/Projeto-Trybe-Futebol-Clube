@@ -13,7 +13,10 @@ Team.init({
     primaryKey: true,
     type: DataTypes.INTEGER,
   },
-  teamName: DataTypes.STRING,
+  teamName: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
 }, {
   underscored: true,
   sequelize: db,

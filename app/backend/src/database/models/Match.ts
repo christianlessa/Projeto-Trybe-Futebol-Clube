@@ -1,6 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
 import db from '.';
-import Team from './team';
+import Team from './Team';
 
 class Match extends Model {
   public id: number;
@@ -18,11 +18,26 @@ Match.init({
     primaryKey: true,
     type: DataTypes.INTEGER,
   },
-  homeTeam: DataTypes.INTEGER,
-  homeTeamGoals: DataTypes.NUMBER,
-  awayTeam: DataTypes.INTEGER,
-  awayTeamGoals: DataTypes.NUMBER,
-  inProgress: DataTypes.BOOLEAN,
+  homeTeam: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  homeTeamGoals: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  awayTeam: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  awayTeamGoals: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  inProgress: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+  },
 }, {
   underscored: true,
   sequelize: db,

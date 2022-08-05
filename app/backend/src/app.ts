@@ -1,7 +1,11 @@
 import * as express from 'express';
+import loginRouter from './routes/login';
+import HandleError from './midleware/handleError';
 
 class App {
   public app: express.Express;
+
+  error = new HandleError();
 
   constructor() {
     this.app = express();
@@ -22,6 +26,9 @@ class App {
 
     this.app.use(express.json());
     this.app.use(accessControl);
+
+    this.app.use(loginRouter);
+    this.app.use(this.error.errorHandler);
   }
 
   public start(PORT: string | number):void {
