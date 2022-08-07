@@ -7,4 +7,9 @@ export default class TeamRepository {
     const teams = await this.teamModel.findAll();
     return teams;
   }
+
+  async getByIdTeam(id: string): Promise <Team | null> {
+    const teamById = await this.teamModel.findOne({ where: { id } });
+    return teamById;
+  }
 }
