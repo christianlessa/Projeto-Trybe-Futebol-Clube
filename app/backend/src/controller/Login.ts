@@ -1,18 +1,26 @@
 import { Request, Response, NextFunction } from 'express';
 import { ILoginService } from '../interfaces/UserLogin';
-import { generateToken } from '../utils/Token';
 
 export default class UserController {
   constructor(private loginService: ILoginService) {}
 
-  userLogin(req: Request, res: Response, next: NextFunction) {
+  async userLogin(req: Request, res: Response, next: NextFunction) {
     try {
-      const { email } = req.body;
-      this.loginService.userLogin(req.body);
-
-      const token = generateToken(email);
+      const token = await this.loginService.userLogin(req.body);
 
       return res.status(200).json({ token });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  AuthUserLogin(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { role } = req.headers;
+
+      this.loginService.userLogin(req.body);
+
+      return res.status(200).json({ role });
     } catch (error) {
       next(error);
     }

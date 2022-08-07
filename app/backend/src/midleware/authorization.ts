@@ -1,17 +1,16 @@
-import { Response, NextFunction } from 'express';
-import { IUserRequest } from '../interfaces/UserLogin';
+import { Request, Response, NextFunction } from 'express';
 import { decodingToken } from '../utils/Token';
 
-export default async (req: IUserRequest, res: Response, next: NextFunction) => {
+export default async (req: Request, res: Response, _next: NextFunction) => {
   const token = req.headers.authorization;
 
   if (!token) return res.status(401).json({ message: 'Token not found' });
 
   try {
     const decodedToken = decodingToken(token);
-    req.user = decodedToken;
+    req.headers.user = decodedToken.role;
 
-    return next();
+    return res.status(200).json({ role: decodedToken.role });
   } catch (err) {
     return res.status(401).json({ message: 'Token must be a valid token' });
   }
