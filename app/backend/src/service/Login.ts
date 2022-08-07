@@ -1,6 +1,6 @@
 import CustomError from '../utils/customError';
-import { IUserEmail, IUserLogin } from '../interfaces/UserLogin';
 import { generateToken } from '../utils/Token';
+import { IUserEmail, IUserLogin } from '../interfaces/UserLogin';
 
 export default class UserService {
   constructor(private user: IUserEmail) {}
