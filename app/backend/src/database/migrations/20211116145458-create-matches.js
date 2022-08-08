@@ -9,12 +9,22 @@ module.exports = {
         },
         home_team: {
           type: Sequelize.INTEGER,
+          references: {
+            model: 'teams', key: 'id',
+          },
+          ondelete: 'CASCADE',
+          onupdate: 'CASCADE',
         },
         home_team_goals: {
           type: Sequelize.INTEGER,
         },
         away_team: {
           type: Sequelize.INTEGER,
+          references: {
+            model: 'teams', key: 'id',
+          },
+          ondelete: 'CASCADE',
+          onupdate: 'CASCADE',
         },
         away_team_goals: {
           type: Sequelize.INTEGER,
