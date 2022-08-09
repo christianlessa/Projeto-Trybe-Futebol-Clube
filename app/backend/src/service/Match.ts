@@ -1,6 +1,6 @@
 import Match from '../database/models/Match';
 import CustomError from '../utils/customError';
-import { ICreateMatch, IModelMatches, IReturnCreated } from '../interfaces/Match';
+import { ICreateMatch, IModelMatches, IReturnCreated, IUpdateGoals } from '../interfaces/Match';
 
 export default class MatchService {
   constructor(private matchModel: IModelMatches) {}
@@ -24,6 +24,11 @@ export default class MatchService {
 
   async updateProgressFinish(id: number): Promise <[number, Match[]]> {
     const updated = await this.matchModel.updateProgressFinish(id);
+    return updated;
+  }
+
+  async updateInProgress(goals: IUpdateGoals, id: number): Promise <[number, Match[]]> {
+    const updated = await this.matchModel.updateInProgress(goals, id);
     return updated;
   }
 }

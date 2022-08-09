@@ -1,4 +1,4 @@
-import { ICreateMatch, IReturnCreated } from '../interfaces/Match';
+import { ICreateMatch, IReturnCreated, IUpdateGoals } from '../interfaces/Match';
 import Match from '../database/models/Match';
 import Team from '../database/models/Team';
 
@@ -25,6 +25,20 @@ export default class MatchRepository {
     const updated = await this.matchModel.update(
       { inProgress: false },
       { where: { id } },
+    );
+
+    return updated;
+  }
+
+  async updateInProgress(goals: IUpdateGoals, id: number): Promise <[number, Match[]]> {
+    const updated = await this.matchModel.update(
+      {
+        homeTeamGoals: goals.homeTeamGoals,
+        awayTeamGoals: goals.awayTeamGoals,
+      },
+      {
+        where: { id },
+      },
     );
 
     return updated;

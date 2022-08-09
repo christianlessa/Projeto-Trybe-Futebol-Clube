@@ -13,4 +13,6 @@ router.patch(
   (req, res, next) => MatchFactory().updateProgressFinish(req, res, next),
 );
 
+router.patch('/matches/:id', (req, res, next) => MatchFactory().updateInProgress(req, res, next));
+
 export default router;

@@ -17,8 +17,14 @@ export interface IReturnCreated {
   inProgress: boolean;
 }
 
+export interface IUpdateGoals {
+  homeTeamGoals: number;
+  awayTeamGoals: number;
+}
+
 export interface IModelMatches {
   getAllMatches(): Promise <Match[]>
   createMatch(match: ICreateMatch): Promise <IReturnCreated>
-  updateProgressFinish(id: number): Promise<[number, Match[]]>
+  updateProgressFinish(id: number): Promise <[number, Match[]]>
+  updateInProgress(goals: IUpdateGoals, id: number): Promise <[number, Match[]]>
 }
