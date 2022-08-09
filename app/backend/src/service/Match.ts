@@ -1,5 +1,5 @@
 import Match from '../database/models/Match';
-import { IModelMatches } from '../interfaces/Match';
+import { ICreateMatch, IModelMatches, IReturnCreated } from '../interfaces/Match';
 
 export default class MatchService {
   constructor(private matchModel: IModelMatches) {}
@@ -7,5 +7,10 @@ export default class MatchService {
   async getAllMatches(): Promise<Match[]> {
     const matches = await this.matchModel.getAllMatches();
     return matches;
+  }
+
+  async createMatch(match: ICreateMatch): Promise <IReturnCreated> {
+    const newMatch = await this.matchModel.createMatch(match);
+    return newMatch;
   }
 }

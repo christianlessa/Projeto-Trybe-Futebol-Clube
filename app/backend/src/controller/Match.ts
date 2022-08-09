@@ -13,4 +13,18 @@ export default class MatchController {
       next(error);
     }
   }
+
+  async createMatch(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals } = req.body;
+
+      const match = { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, inProgress: true };
+
+      const matches = await this.matchService.createMatch(match);
+
+      return res.status(201).json(matches);
+    } catch (error) {
+      next(error);
+    }
+  }
 }

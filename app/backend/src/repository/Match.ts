@@ -1,3 +1,4 @@
+import { ICreateMatch, IReturnCreated } from '../interfaces/Match';
 import Match from '../database/models/Match';
 import Team from '../database/models/Team';
 
@@ -13,5 +14,10 @@ export default class MatchRepository {
     });
 
     return matches as Match[];
+  }
+
+  async createMatch(match: ICreateMatch): Promise<IReturnCreated> {
+    const newMatch = await this.matchModel.create(match);
+    return newMatch as IReturnCreated;
   }
 }
