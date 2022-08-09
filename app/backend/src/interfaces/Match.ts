@@ -20,4 +20,5 @@ export interface IReturnCreated {
 export interface IModelMatches {
   getAllMatches(): Promise <Match[]>
   createMatch(match: ICreateMatch): Promise <IReturnCreated>
+  updateProgressFinish(id: number): Promise<[number, Match[]]>
 }

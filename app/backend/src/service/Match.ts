@@ -13,4 +13,9 @@ export default class MatchService {
     const newMatch = await this.matchModel.createMatch(match);
     return newMatch;
   }
+
+  async updateProgressFinish(id: number): Promise <[number, Match[]]> {
+    const updated = await this.matchModel.updateProgressFinish(id);
+    return updated;
+  }
 }

@@ -20,4 +20,13 @@ export default class MatchRepository {
     const newMatch = await this.matchModel.create(match);
     return newMatch as IReturnCreated;
   }
+
+  async updateProgressFinish(id: number): Promise<[number, Match[]]> {
+    const updated = await this.matchModel.update(
+      { inProgress: false },
+      { where: { id } },
+    );
+
+    return updated;
+  }
 }

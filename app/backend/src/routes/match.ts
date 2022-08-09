@@ -8,4 +8,9 @@ router.get('/matches', (req, res, next) => MatchFactory().getAllMatches(req, res
 
 router.post('/matches', authToken, (req, res, next) => MatchFactory().createMatch(req, res, next));
 
+router.patch(
+  '/matches/:id/finish',
+  (req, res, next) => MatchFactory().updateProgressFinish(req, res, next),
+);
+
 export default router;
