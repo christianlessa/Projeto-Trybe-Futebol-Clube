@@ -5,7 +5,12 @@ const router = Router();
 
 router.get(
   '/leaderboard/home',
-  (req, res, next) => LeaderboardFactory().getLeaderboards(req, res, next),
+  (req, res, next) => LeaderboardFactory().getLeaderboardsHome(req, res, next),
+);
+
+router.get(
+  '/leaderboard/away',
+  (req, res, next) => LeaderboardFactory().getLeaderboardsAway(req, res, next),
 );
 
 export default router;

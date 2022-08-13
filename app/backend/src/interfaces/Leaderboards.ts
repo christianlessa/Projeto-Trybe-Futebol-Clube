@@ -1,9 +1,21 @@
 import Team from '../database/models/Team';
 
-export interface ITeamMaches {
+export interface ITeamMachesHome {
   id: number;
   teamName: string;
   teamHome: [{
+    homeTeam: number;
+    homeTeamGoals: number;
+    awayTeam: number;
+    awayTeamGoals: number;
+    inProgress: boolean;
+  }];
+}
+
+export interface ITeamMachesAway {
+  id: number;
+  teamName: string;
+  teamAway: [{
     homeTeam: number;
     homeTeamGoals: number;
     awayTeam: number;
@@ -33,6 +45,19 @@ export interface IReturnLeaderboards {
   efficiency: number;
 }
 
-export interface ILeaderboard {
-  getAllMatchesLeader(): Promise <IReturnLeaderboards[] | Team[]>
+export interface IReturnLeaderboards2 {
+  name: string;
+  totalPoints: number;
+  totalGames: number;
+  totalVictories: number;
+  totalDraws: number;
+  totalLosses: number;
+  goalsFavor: number;
+  goalsOwn: number;
+  goalsBalance: number;
+}
+
+export interface ILeaderboardLeader {
+  getAllMatchesHome(): Promise <IReturnLeaderboards[] | Team[]>
+  getAllMatchesAway(): Promise <IReturnLeaderboards[] | Team[]>
 }

@@ -1,7 +1,7 @@
 import { IReturnLeaderboards, ITeamHome } from '../interfaces/Leaderboards';
 
-export default class LeaderboardsHelpers {
-  public static totalpoints(homeTeam: ITeamHome[]) {
+export default class LeaderboardsHelpersHome {
+  public static totalpointsHome(homeTeam: ITeamHome[]) {
     return homeTeam.reduce((acc, curr) => {
       if (curr.homeTeamGoals > curr.awayTeamGoals) return acc + 3;
       if (curr.homeTeamGoals === curr.awayTeamGoals) return acc + 1;
@@ -18,7 +18,7 @@ export default class LeaderboardsHelpers {
     }, 0);
   }
 
-  public static totalDraws(homeTeam: ITeamHome[]) {
+  public static totalDrawsHome(homeTeam: ITeamHome[]) {
     return homeTeam.reduce((acc, curr) => {
       if (curr.homeTeamGoals === curr.awayTeamGoals) return acc + 1;
 
@@ -55,7 +55,7 @@ export default class LeaderboardsHelpers {
   }
 
   public static efficiencyHome(homeTeam: ITeamHome[]) {
-    const totalPoints = this.totalpoints(homeTeam);
+    const totalPoints = this.totalpointsHome(homeTeam);
     const totalGames = homeTeam.length;
     const arrayPoints = [];
 
