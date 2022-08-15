@@ -5,9 +5,10 @@ import {
 } from '../interfaces/Leaderboards';
 
 export default class LeaderboardService {
-  constructor(private teamModel: ILeaderboardLeader) {}
+  private getLeader: IReturnLeaderboards[];
+  constructor(private teamModel: ILeaderboardLeader) { }
 
-  async leaderboardsHome(): Promise <IReturnLeaderboards[]> {
+  async leaderboardsHome(): Promise<IReturnLeaderboards[]> {
     const matches = await this.teamModel.getAllMatchesHome() as unknown as ITeamMachesHome[];
 
     const gamesForTeam = matches.map((match) => ({
@@ -27,7 +28,7 @@ export default class LeaderboardService {
     return sortedGames;
   }
 
-  async leaderboardsAway(): Promise <IReturnLeaderboards[]> {
+  async leaderboardsAway(): Promise<IReturnLeaderboards[]> {
     const matches = await this.teamModel.getAllMatchesAway() as unknown as ITeamMachesAway[];
 
     const gamesForTeam = matches.map((match) => ({
@@ -45,5 +46,25 @@ export default class LeaderboardService {
 
     const sortedGames = HelpersAway.sortedGames(gamesForTeam);
     return sortedGames;
+  }
+
+  async leaderboards(home: IReturnLeaderboards[], away: IReturnLeaderboards[]) {
+    this.getLeader = home.map((leaderboard) => away.reduce((acc, curr) => {
+      if (leaderboard.name === curr.name) {
+        acc.name = leaderboard.name;
+        acc.totalPoints = leaderboard.totalPoints + curr.totalPoints;
+        acc.totalGames = leaderboard.totalGames + curr.totalGames;
+        acc.totalVictories = leaderboard.totalVictories + curr.totalVictories;
+        acc.totalDraws = leaderboard.totalDraws + curr.totalDraws;
+        acc.totalLosses = leaderboard.totalLosses + curr.totalLosses;
+        acc.goalsFavor = leaderboard.goalsFavor + curr.goalsFavor;
+        acc.goalsOwn = leaderboard.goalsOwn + curr.goalsOwn;
+        acc.goalsBalance = leaderboard.goalsBalance + curr.goalsBalance;
+        acc.efficiency = Number((((leaderboard.totalPoints + curr.totalPoints)
+          / ((leaderboard.totalGames + curr.totalGames) * 3)) * 100).toFixed(2));
+      }
+      return acc;
+    }, {} as IReturnLeaderboards));
+    return HelpersHome.sortedGames(this.getLeader);
   }
 }

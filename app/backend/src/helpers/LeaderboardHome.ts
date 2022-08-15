@@ -58,7 +58,6 @@ export default class LeaderboardsHelpersHome {
     const totalPoints = this.totalpointsHome(homeTeam);
     const totalGames = homeTeam.length;
     const arrayPoints = [];
-
     arrayPoints.push(totalPoints);
 
     const efficiency = arrayPoints.map((points) => {

@@ -2,7 +2,6 @@ import { IReturnLeaderboards, ITeamHome } from '../interfaces/Leaderboards';
 
 export default class LeaderboardsHelpersAway {
   public static totalpointsAway(teamAway: ITeamHome[]) {
-    console.log(teamAway);
     return teamAway.reduce((acc, curr) => {
       if (curr.awayTeamGoals > curr.homeTeamGoals) return acc + 3;
       if (curr.awayTeamGoals === curr.homeTeamGoals) return acc + 1;

@@ -45,18 +45,6 @@ export interface IReturnLeaderboards {
   efficiency: number;
 }
 
-export interface IReturnLeaderboards2 {
-  name: string;
-  totalPoints: number;
-  totalGames: number;
-  totalVictories: number;
-  totalDraws: number;
-  totalLosses: number;
-  goalsFavor: number;
-  goalsOwn: number;
-  goalsBalance: number;
-}
-
 export interface ILeaderboardLeader {
   getAllMatchesHome(): Promise <IReturnLeaderboards[] | Team[]>
   getAllMatchesAway(): Promise <IReturnLeaderboards[] | Team[]>
