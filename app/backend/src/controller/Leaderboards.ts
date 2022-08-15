@@ -35,6 +35,8 @@ export default class LeaderboardController {
       const sortedLeaderboards = HelpersHome.sortedGames(leaderboards);
 
       return res.status(200).json(sortedLeaderboards);
-    } catch (error) { next(error); }
+    } catch (error) {
+      next(error);
+    }
   }
 }

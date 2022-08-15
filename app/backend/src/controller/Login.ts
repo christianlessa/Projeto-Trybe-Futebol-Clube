@@ -13,16 +13,4 @@ export default class UserController {
       next(error);
     }
   }
-
-  AuthUserLogin(req: Request, res: Response, next: NextFunction) {
-    try {
-      const { role } = req.headers;
-
-      this.loginService.userLogin(req.body);
-
-      return res.status(200).json({ role });
-    } catch (error) {
-      next(error);
-    }
-  }
 }
