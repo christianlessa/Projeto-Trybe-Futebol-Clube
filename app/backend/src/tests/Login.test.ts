@@ -31,8 +31,8 @@ describe('Test endpoint /login', () => {
 
   it('POST - Retorna status 200 usuario válido', async () => {
     chaiHttpResponse = await chai.request(app).post('/login').send({ 
-        email: "admin@admin.com",
-        password: "secret_admin",
+      email: "admin@admin.com",
+      password: "secret_admin",
     });
 
     expect(chaiHttpResponse.status).to.be.eq(200);
@@ -53,7 +53,7 @@ describe('Test endpoint /login', () => {
 
   it('POST - Retorna status 400 usuario inválido', async () => {
     chaiHttpResponse = await chai.request(app).post('/login').send({ 
-        email: "admin@admin.com",
+      email: "admin@admin.com",
     });
 
     expect(chaiHttpResponse.status).to.be.eq(400);
