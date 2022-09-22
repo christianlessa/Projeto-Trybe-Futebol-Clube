@@ -45,5 +45,5 @@ O projeto é composto de 4 entidades importantes para sua estrutura:
     <strong>Como executar o projeto</strong>
   </summary><br>
 
-  - **Execute o comando: "npm run compose:up" ou `npm run compose:up:dev`, na raiz do diretório do projeto!**
+  - **Execute o comando: "npm run compose:up" ou "`npm run compose:up:dev`", na raiz do diretório do projeto!**
 </details>
